@@ -7,6 +7,33 @@
 A simple Elasticsearch cleaner based on a Python script to clean up all indices and data streams
 from the Elasticsearch cluster which are older than the specified number of days.
 
+Below you can find an example of the execution:
+```
+simple-elasticsearch-cleaner % python simple_elasticsearch_cleaner.py 30
+Script Execution Started!
+Calculating the date that was 30 day(s) ago...
+Connecting to Elasticsearch...
+Connected to Elasticsearch successfully.
+Fetching the list of all the data streams...
+Fetching the list of all the indices...
+Finding and deleting all the indices older than 30 days '2024.07.14'...
+Deleted index '__REDACTED__' which was created on '2024.07.12'.
+Deleted index '__REDACTED__' which was created on '2024.07.13'.
+Deleted index '__REDACTED__' which was created on '2024.07.12'.
+Deleted index '__REDACTED__' which was created on '2024.07.13'.
+Finding and deleting all the data streams older than 30 days '2024.07.14'...
+Skipping data stream '__REDACTED__' as it is a managed data stream.
+Skipping data stream '__REDACTED__' as it is a managed data stream.
+Deleted data stream '__REDACTED__' which was older than '2024.07.14'.
+Deleted data stream '__REDACTED__' which was older than '2024.07.14'.
+Skipping data stream '__REDACTED__' as it is a managed data stream.
+Closing the connection with Elasticsearch...
+Connection with Elasticsearch closed successfully.
+Script Execution Completed!
+```
+
+Note: In the actual execution, you will see the actual values instead of `__REDACTED__` values.
+
 # Usage Notes
 
 ## Prerequisites
