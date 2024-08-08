@@ -10,7 +10,7 @@ import os
 import sys
 from datetime import datetime, timedelta, timezone
 import urllib3
-from elasticsearch import Elasticsearch, exceptions
+from elasticsearch import Elasticsearch
 
 print("Script Execution Started!")
 
@@ -41,7 +41,7 @@ if elasticsearch_password is None:
     sys.exit(1)
 
 # calculate the date that was {number_of_days} days ago
-print(f"Calculating the date that was '{number_of_days}' day(s) ago...")
+print(f"Calculating the date that was {number_of_days} day(s) ago...")
 older_date = (datetime.now() - timedelta(days=int(number_of_days))).strftime('%Y.%m.%d')
 
 # mute warnings for Elasticsearch client as certificate verification is disabled
@@ -51,8 +51,12 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 print("Connecting to Elasticsearch...")
 elasticsearch_client = Elasticsearch(
     [f"{elasticsearch_host}:{elasticsearch_port}"],
-    basic_auth=(elasticsearch_user, elasticsearch_password),
-    verify_certs=False
+    basic_auth=(
+        elasticsearch_user,
+        elasticsearch_password
+    ),
+    verify_certs=False,
+    ssl_show_warn=False
 )
 
 # verify the connection with Elasticsearch
@@ -76,30 +80,27 @@ print(
 )
 data_stream_indices = []
 for index in all_indices:
-    try:
-        # fetch the creation date of the index
-        index_settings = elasticsearch_client.indices.get_settings(index=index)
-        creation_date_in_ms = index_settings[index]['settings']['index']['creation_date']
+    # fetch the creation date of the index
+    index_settings = elasticsearch_client.indices.get_settings(index=index)
+    creation_date_in_ms = index_settings[index]['settings']['index']['creation_date']
 
-        # format the creation date of the index
-        creation_date_in_seconds = int(creation_date_in_ms) / 1000
-        creation_datetime = datetime.fromtimestamp(creation_date_in_seconds, timezone.utc)
-        formatted_creation_date = creation_datetime.strftime('%Y.%m.%d')
+    # format the creation date of the index
+    creation_date_in_seconds = int(creation_date_in_ms) / 1000
+    creation_datetime = datetime.fromtimestamp(creation_date_in_seconds, timezone.utc)
+    formatted_creation_date = creation_datetime.strftime('%Y.%m.%d')
 
-        # check if the creation date of the index is older than {number_of_days} days
-        if older_date > formatted_creation_date:
-            # check if the index is related to a data stream
-            if ".ds" in index:
-                # add the index in the list of data stream indices to delete its related data stream
-                data_stream_indices.append(index)
-            else:
-                # delete the index
-                elasticsearch_client.indices.delete(index=index)
-                print(
-                    f"Deleted index '{index}' which was created on '{formatted_creation_date}'."
-                )
-    except exceptions.NotFoundError:
-        print(f"Index '{index}' is not found so skipping it.")
+    # check if the creation date of the index is older than {number_of_days} days
+    if older_date > formatted_creation_date:
+        # check if the index is related to a data stream
+        if ".ds" in index:
+            # add the index in the list of data stream indices to delete its related data stream
+            data_stream_indices.append(index)
+        else:
+            # delete the index
+            elasticsearch_client.indices.delete(index=index)
+            print(
+                f"Deleted index '{index}' which was created on '{formatted_creation_date}'."
+            )
 
 # find and delete all the data streams older than {number_of_days} days '{older_date}'
 print(
