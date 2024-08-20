@@ -14,19 +14,12 @@ from elasticsearch import Elasticsearch
 
 print("Script Execution Started!")
 
-# fetch number of days from the arguments passed to the script
-if len(sys.argv) < 2 or len(sys.argv) > 2:
-    print("ERROR: Invalid arguments passed.")
-    print("Usage: python simple_elasticsearch_cleaner.py NUMBER_OF_DAYS")
-    print("Example: python simple_elasticsearch_cleaner.py 30")
-    sys.exit(1)
-number_of_days = sys.argv[1]
-
 # fetch environment variables related to Elasticsearch
 elasticsearch_host = os.getenv("ELASTICSEARCH_HOST")
 elasticsearch_port = os.getenv("ELASTICSEARCH_PORT")
 elasticsearch_user = os.getenv("ELASTICSEARCH_USER")
 elasticsearch_password = os.getenv("ELASTICSEARCH_PASSWORD")
+number_of_days = os.getenv("NUMBER_OF_DAYS")
 if elasticsearch_host is None:
     print("ERROR: ELASTICSEARCH_HOST environment variable is not set.")
     sys.exit(1)
@@ -38,6 +31,9 @@ if elasticsearch_user is None:
     sys.exit(1)
 if elasticsearch_password is None:
     print("ERROR: ELASTICSEARCH_PASSWORD environment variable is not set.")
+    sys.exit(1)
+if number_of_days is None:
+    print("ERROR: NUMBER_OF_DAYS environment variable is not set.")
     sys.exit(1)
 
 # calculate the date that was {number_of_days} days ago
@@ -60,11 +56,8 @@ elasticsearch_client = Elasticsearch(
 )
 
 # verify the connection with Elasticsearch
-if elasticsearch_client.ping():
-    print("Connected to Elasticsearch successfully.")
-else:
-    print("ERROR: Failed to connect to Elasticsearch.")
-    sys.exit(1)
+elasticsearch_client.info()
+print("Connected to Elasticsearch successfully.")
 
 # fetch the list of all the data streams
 print("Fetching the list of all the data streams...")

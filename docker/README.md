@@ -1,3 +1,18 @@
+# Quick Reference
+
+-	**Maintained by**:
+	[Abdullah Khawer - LinkedIn](https://www.linkedin.com/in/abdullah-khawer)
+
+-	**Maintained at**:
+	[simple-elasticsearch-cleaner - GitHub](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner)
+
+-	**Where to file issues**:
+	[https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/issues](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/issues)
+
+# Supported tags and respective `Dockerfile` links
+
+-	[`2.0.0`, `latest`](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/v2.0.0/docker/Dockerfile)
+
 # Simple Elasticsearch Cleaner
 
 - Founder: [Abdullah Khawer - LinkedIn](https://www.linkedin.com/in/abdullah-khawer)
@@ -33,52 +48,13 @@ Script Execution Completed!
 
 *Note: In the actual execution, you will see the actual values instead of `__REDACTED__` values.*
 
+For more details, check out its repository on GitHub [here](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/).
+
 # Usage Notes
 
-Following are the 4 ways to use it:
-- Python script.
-- Docker container running that Python script.
-- Helm chart to create a Helm release to create a cron job running that Docker container in a pod on a Kubernetes cluster.
-- Terraform module to deploy that Helm chart as a Helm release on a Kubernetes cluster.
+## Execution Instructions
 
-## Terraform Module
-
-You can use its [Terraform module](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/terraform) to create a Helm release using its Helm chart to create a cron job running that Docker container in a pod on a Kubernetes cluster.
-
-For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/terraform/README.md).
-
-## Helm Chart
-
-You can use its [Helm chart](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/helm-chart/simple-elasticsearch-cleaner) to create a Helm release to create a cron job running that Docker container in a pod on a Kubernetes cluster.
-
-For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/helm-chart/simple-elasticsearch-cleaner/README.md).
-
-## Docker Image
-
-You can use its [Docker image](https://hub.docker.com/r/abdullahkhawer/simple-elasticsearch-cleaner/) which is publicly available to run its Docker container to run its Python script.
-
-The Dockerfile used to build the image can be found [here](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/docker/).
-
-For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/docker/README.md).
-
-## Python Script
-
-You can use its [Python script](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/simple_elasticsearch_cleaner.py) to run it directly which is the main script to be executed in order to clean the old indices and data streams.
-
-### Prerequisites
-
-Following are the prerequisites to be met once before you begin:
-
-- Following packages should be installed on your system:
-   - `pip`
-   - `python`
-   - Using `pip`, install the following via `requirements.txt` file:
-      - `urllib3`
-      - `elasticsearch`
-
-### Execution Instructions
-
-Once all the prerequisites are met, set the following environment variables:
+Set the following environment variables:
    - `ELASTICSEARCH_HOST`
       - Description: Host of Elasticsearch cluster.
       - Example: `https://localhost`
@@ -101,10 +77,16 @@ Once all the prerequisites are met, set the following environment variables:
       - Requirement: REQUIRED
 
 And then simply run the following command:
-- `python simple_elasticsearch_cleaner.py`
+- `docker run --platform linux/amd64 -it -e ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST -e ELASTICSEARCH_PORT=$ELASTICSEARCH_PORT -e ELASTICSEARCH_USER=$ELASTICSEARCH_USER -e ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD -e NUMBER_OF_DAYS=$NUMBER_OF_DAYS abdullahkhawer/simple-elasticsearch-cleaner:latest`
+
+## Build Command
+
+Following build command is used on the root level in the GitHub repository:
+
+`docker buildx build --platform linux/amd64 -t "abdullahkhawer/simple-elasticsearch-cleaner:latest" --no-cache -f ./docker/Dockerfile .`
 
 # License
 
-This project is licensed under the Apache License - see the [LICENSE](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/LICENSE) file for details. This LICENSE file applies to all the code in this repository including `docker`, `helm-charts` and `terraform` subdirectories.
+This project is licensed under the Apache License - see the [LICENSE](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/LICENSE) file for details.
 
 #### Any contributions, improvements and suggestions will be highly appreciated. 😊

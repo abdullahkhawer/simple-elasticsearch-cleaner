@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2024-08-20
+
+### 🚀 Features
+
+- [**breaking**] Add code for its Docker container, Helm chart and Terraform module, update main Python script to replace number_of_days argument with environment variable, update README accordingly and refactor code.
+
 ## [1.0.1] - 2024-08-08
 
 ### 🐛 Bug Fixes

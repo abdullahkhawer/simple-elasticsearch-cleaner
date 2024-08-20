@@ -1,0 +1,12 @@
+apiVersion: v2
+name: simple-elasticsearch-cleaner
+description: Create a cron job in Kubernetes to run Simple Elasticsearch Cleaner.
+type: application
+sources:
+  - https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/helm-chart/simple-elasticsearch-cleaner
+maintainers:
+  - name: Abdullah Khawer
+    email: abdullahkhawer@live.com
+    url: https://github.com/abdullahkhawer
+version: 1.0.0
+appVersion: "2.0.0"
