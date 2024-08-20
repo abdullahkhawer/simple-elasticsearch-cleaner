@@ -1,0 +1,68 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: simple-elasticsearch-cleaner
+  namespace: "{{ .Values.namespace }}"
+  labels:
+    app: simple-elasticsearch-cleaner
+    chart: {{ template "simple-elasticsearch-cleaner.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  schedule: "{{ .Values.schedule }}"
+  jobTemplate:
+    metadata:
+      labels:
+        app: simple-elasticsearch-cleaner
+        release: {{ .Release.Name }}
+    spec:
+      template:
+        metadata:
+          labels:
+            app: simple-elasticsearch-cleaner
+            release: {{ .Release.Name }}
+        spec:
+          containers:
+            - name: simple-elasticsearch-cleaner
+              image: "abdullahkhawer/simple-elasticsearch-cleaner:{{ .Values.image.tag }}"
+              imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+              env:
+                - name: ELASTICSEARCH_HOST
+                  valueFrom:
+                    secretKeyRef:
+                      name: simple-elasticsearch-cleaner-secrets
+                      key: elasticsearch-host
+                - name: ELASTICSEARCH_PORT
+                  valueFrom:
+                    secretKeyRef:
+                      name: simple-elasticsearch-cleaner-secrets
+                      key: elasticsearch-port
+                - name: ELASTICSEARCH_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: simple-elasticsearch-cleaner-secrets
+                      key: elasticsearch-username
+                - name: ELASTICSEARCH_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: simple-elasticsearch-cleaner-secrets
+                      key: elasticsearch-password
+                - name: NUMBER_OF_DAYS
+                  value: "{{ .Values.numberOfDays }}"
+              resources:
+                limits:
+                  cpu: "{{ .Values.resources.limits.cpu }}"
+                  memory: "{{ .Values.resources.limits.memory }}"
+                requests:
+                  cpu: "{{ .Values.resources.requests.cpu }}"
+                  memory: "{{ .Values.resources.requests.memory }}"
+              securityContext:
+                allowPrivilegeEscalation: false
+          restartPolicy: Never
+        {{- if .Values.nodeSelector }}
+          nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 12 }}
+        {{- end }}
+          securityContext:
+            seccompProfile:
+              type: RuntimeDefault

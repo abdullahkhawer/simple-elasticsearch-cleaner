@@ -1,0 +1,23 @@
+# Default values for simple-elasticsearch-cleaner.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  tag: latest
+  pullPolicy: Always
+
+namespace: "elasticsearch"
+
+schedule: "0 1 * * *" # At 01:00 every day
+
+numberOfDays: 30
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+nodeSelector: {}
