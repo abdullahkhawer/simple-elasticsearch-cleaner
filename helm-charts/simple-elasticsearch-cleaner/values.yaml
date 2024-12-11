@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  tag: latest
+  tag: "2.1.0"
   pullPolicy: Always
 
-namespace: "elasticsearch"
+namespace: elasticsearch
 
 schedule: "0 1 * * *" # At 01:00 every day
 
@@ -21,3 +21,16 @@ resources:
     memory: 128Mi
 
 nodeSelector: {}
+
+esPort: 9200
+
+secrets:
+  host:
+    name: "simple-elasticsearch-cleaner-secret"
+    key: "elasticsearch-host"
+  user:
+    name: "elasticsearch-credentials"
+    key: "elasticsearch-username"
+  password:
+    name: "elasticsearch-credentials"
+    key: "elasticsearch-password"

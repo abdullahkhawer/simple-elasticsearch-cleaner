@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2024-12-11
+
+### 🚀 Features
+
+- Use variables to set Kubernetes secrets name and key for Elasticsearch credentials Helm chart and Terraform code, upgrade Python and its libraries for Docker image, update READMEs accordingly and release v2.1.0.
+
 ## [2.0.0] - 2024-08-20
 
 ### 🚀 Features

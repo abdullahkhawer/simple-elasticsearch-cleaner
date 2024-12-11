@@ -1,2 +1,2 @@
-urllib3==2.2.2
-elasticsearch==8.15.0
+urllib3==2.2.3
+elasticsearch==8.16.0

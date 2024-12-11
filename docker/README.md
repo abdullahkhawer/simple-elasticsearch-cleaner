@@ -11,7 +11,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
--	[`2.0.0`, `latest`](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/v2.0.0/docker/Dockerfile)
+-	[`2.1.0`, `latest`](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/v2.1.0/docker/Dockerfile)
 
 # Simple Elasticsearch Cleaner
 
@@ -57,7 +57,7 @@ For more details, check out its repository on GitHub [here](https://github.com/a
 Set the following environment variables:
    - `ELASTICSEARCH_HOST`
       - Description: Host of Elasticsearch cluster.
-      - Example: `https://localhost`
+      - Example: `https://localhost` or `https://host.docker.internal`
       - Requirement: REQUIRED
    - `ELASTICSEARCH_PORT`
       - Description: Port of Elasticsearch cluster.
@@ -77,13 +77,21 @@ Set the following environment variables:
       - Requirement: REQUIRED
 
 And then simply run the following command:
-- `docker run --platform linux/amd64 -it -e ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST -e ELASTICSEARCH_PORT=$ELASTICSEARCH_PORT -e ELASTICSEARCH_USER=$ELASTICSEARCH_USER -e ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD -e NUMBER_OF_DAYS=$NUMBER_OF_DAYS abdullahkhawer/simple-elasticsearch-cleaner:latest`
+- `docker run --platform linux/amd64 -it -e ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST -e ELASTICSEARCH_PORT=$ELASTICSEARCH_PORT -e ELASTICSEARCH_USER=$ELASTICSEARCH_USER -e ELASTICSEARCH_PASSWORD=$ELASTICSEARCH_PASSWORD -e NUMBER_OF_DAYS=$NUMBER_OF_DAYS abdullahkhawer/simple-elasticsearch-cleaner:2.1.0`
 
-## Build Command
+## Build, Tag and Push Commands
 
-Following build command is used on the root level in the GitHub repository:
+Following `build` command is used on the root level in the GitHub repository:
 
-`docker buildx build --platform linux/amd64 -t "abdullahkhawer/simple-elasticsearch-cleaner:latest" --no-cache -f ./docker/Dockerfile .`
+`docker buildx build --platform linux/amd64 -t abdullahkhawer/simple-elasticsearch-cleaner:latest --no-cache -f ./docker/Dockerfile .`
+
+Following `tag` command is used on the Docker image built:
+
+`docker image tag abdullahkhawer/simple-elasticsearch-cleaner:latest abdullahkhawer/simple-elasticsearch-cleaner:2.1.0`
+
+Following `push` command is used on the Docker image tagged:
+
+`docker push abdullahkhawer/simple-elasticsearch-cleaner:2.1.0`
 
 # License
 
