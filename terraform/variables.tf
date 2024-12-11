@@ -1,5 +1,5 @@
 variable "image_tag" {
-  default = "latest"
+  default = "2.1.0"
 }
 
 variable "image_pull_policy" {
@@ -36,4 +36,32 @@ variable "resources_requests_memory" {
 
 variable "node_selector" {
   default = {}
+}
+
+variable "es_port" {
+  default = "9200"
+}
+
+variable "secrets_host_name" {
+  default = "simple-elasticsearch-cleaner-secret"
+}
+
+variable "secrets_host_key" {
+  default = "elasticsearch-host"
+}
+
+variable "secrets_user_name" {
+  default = "elasticsearch-credentials"
+}
+
+variable "secrets_user_key" {
+  default = "elasticsearch-username"
+}
+
+variable "secrets_password_name" {
+  default = "elasticsearch-credentials"
+}
+
+variable "secrets_password_key" {
+  default = "elasticsearch-password"
 }

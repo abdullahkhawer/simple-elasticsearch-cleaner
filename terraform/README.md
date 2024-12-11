@@ -41,20 +41,31 @@ The default configuration file for the Helm chart is configured in a way that yo
 
 Similarly, Terraform variables have default values and you don't need to change anything but you can set the desired values.
 
-The Helm chart uses a Kubernetes secret `simple-elasticsearch-cleaner-secrets` by default. You need to create this secret with the following keys:
-   - `ELASTICSEARCH_HOST`
+The Helm chart uses Kubernetes secrets having Elasticsearch credentials which are host, username and password. You can either create new secret(s) or use existing one(s). You can specify the secret name and key for all 3 credentials via the values file as follows:
+
+```yaml
+secrets:
+  host:
+    name: "simple-elasticsearch-cleaner-secret"
+    key: "elasticsearch-host"
+  user:
+    name: "elasticsearch-credentials"
+    key: "elasticsearch-username"
+  password:
+    name: "elasticsearch-credentials"
+    key: "elasticsearch-password"
+```
+
+Following are the details about the values of all 3 credentials in their Kubernetes secrets:
+   - `elasticsearch-host`
       - Description: Host of Elasticsearch cluster.
       - Example: `https://localhost`
       - Requirement: REQUIRED
-   - `ELASTICSEARCH_PORT`
-      - Description: Port of Elasticsearch cluster.
-      - Example: `9200`
-      - Requirement: REQUIRED
-   - `ELASTICSEARCH_USER`
+   - `elasticsearch-username`
       - Description: Username of the user of the Elasticsearch cluster.
       - Example: `admin`
       - Requirement: REQUIRED
-   - `ELASTICSEARCH_PASSWORD`
+   - `elasticsearch-password`
       - Description: Password of the user of the Elasticsearch cluster.
       - Example: `123456789`
       - Requirement: REQUIRED
@@ -78,6 +89,13 @@ module "simple-elasticsearch-cleaner" {
   resources_requests_cpu    = var.resources_requests_cpu
   resources_requests_memory = var.resources_requests_memory
   node_selector             = var.node_selector
+  es_port                   = var.es_port
+  secrets_host_name         = var.secrets_host_name
+  secrets_host_key          = var.secrets_host_key
+  secrets_user_name         = var.secrets_user_name
+  secrets_user_key          = var.secrets_user_key
+  secrets_password_name     = var.secrets_password_name
+  secrets_password_key      = var.secrets_password_key
 }
 ```
 
@@ -85,16 +103,23 @@ module "simple-elasticsearch-cleaner" {
 
 | Parameter                      | Description                                                                                                                                                                  | Default                              |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------|
-| `image_tag`             | Image Tag                                                                                      | `latest`                 |
+| `image_tag`             | Image tag                                                                                      | `2.1.0`                 |
 | `image_pull_policy`        | Image pull policy                                                                                      | `Always`                                 |
-| `namespace`        | Kubernetes Namespace                                                                                      | `elasticsearch`                                 |
-| `schedule`        | Cron Job Schedule                                                                                      | `0 1 * * *`                                 |
-| `number_of_days`        | Number of days to delete the indices and data streams older than that                                                                                      | `30`                                 |
-| `resources_limits_cpu`        | Pod CPU Limit                                                                                      | `200m`                                 |
-| `resources_limits_memory`        | Pod Memory Limit                                                                                      | `256Mi`                                 |
-| `resources_requests_cpu`        | Pod CPU Request                                                                                      | `100m`                                 |
-| `resources_requests_memory`        | Pod Memory Request                                                                                      | `128Mi`                                 |
-| `node_selector`        | Node Selector for Pod                                                                                      | `{}`                                 |
+| `namespace`        | Kubernetes namespace                                                                                      | `elasticsearch`                                 |
+| `schedule`        | Cron job schedule                                                                                      | `0 1 * * *`                                 |
+| `number_of_days`        | To delete the indices and data streams older than the specified number of days                                                                                      | `30`                                 |
+| `resources_limits_cpu`        | Pod CPU limit                                                                                      | `200m`                                 |
+| `resources_limits_memory`        | Pod memory limit                                                                                      | `256Mi`                                 |
+| `resources_requests_cpu`        | Pod CPU request                                                                                      | `100m`                                 |
+| `resources_requests_memory`        | Pod memory request                                                                                      | `128Mi`                                 |
+| `node_selector`        | Node selector for pod                                                                                      | `{}`                                 |
+| `es_port`        | Elasticsearch port                                                                                      | `9200`                                 |
+| `secrets_host_name`        | Name of Kubernetes secret having Elasticsearch host                                                                                      | `simple-elasticsearch-cleaner-secret`                                 |
+| `secrets_host_key`        | Name of key inside Kubernetes secret having Elasticsearch host                                                                                      | `elasticsearch-host`                                 |
+| `secrets_user_name`        | Name of Kubernetes secret having Elasticsearch username                                                                                      | `elasticsearch-credentials`                                 |
+| `secrets_user_key`        | Name of key inside Kubernetes secret having Elasticsearch username                                                                                      | `elasticsearch-username`                                 |
+| `secrets_password_name`        | Name of Kubernetes secret having Elasticsearch password                                                                                      | `elasticsearch-credentials`                                 |
+| `secrets_password_key`        | Name of key inside Kubernetes secret having Elasticsearch password                                                                                      | `elasticsearch-username`                                 |
 
 # License
 

@@ -27,26 +27,23 @@ spec:
               image: "abdullahkhawer/simple-elasticsearch-cleaner:{{ .Values.image.tag }}"
               imagePullPolicy: "{{ .Values.image.pullPolicy }}"
               env:
-                - name: ELASTICSEARCH_HOST
-                  valueFrom:
-                    secretKeyRef:
-                      name: simple-elasticsearch-cleaner-secrets
-                      key: elasticsearch-host
-                - name: ELASTICSEARCH_PORT
-                  valueFrom:
-                    secretKeyRef:
-                      name: simple-elasticsearch-cleaner-secrets
-                      key: elasticsearch-port
                 - name: ELASTICSEARCH_USER
                   valueFrom:
                     secretKeyRef:
-                      name: simple-elasticsearch-cleaner-secrets
-                      key: elasticsearch-username
+                      name: {{ .Values.secrets.user.name }}
+                      key: {{ .Values.secrets.user.key }}
                 - name: ELASTICSEARCH_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: simple-elasticsearch-cleaner-secrets
-                      key: elasticsearch-password
+                      name: {{ .Values.secrets.password.name }}
+                      key: {{ .Values.secrets.password.key }}
+                - name: ELASTICSEARCH_HOST
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.secrets.host.name }}
+                      key: {{ .Values.secrets.host.key }}
+                - name: ELASTICSEARCH_PORT
+                  value: "{{ .Values.esPort }}"
                 - name: NUMBER_OF_DAYS
                   value: "{{ .Values.numberOfDays }}"
               resources:
