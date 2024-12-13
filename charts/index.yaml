@@ -3,9 +3,8 @@ entries:
   simple-elasticsearch-cleaner:
   - apiVersion: v2
     appVersion: 2.1.0
-    created: "2024-12-13T17:08:06.301397+01:00"
     description: A Helm chart for Simple Elasticsearch Cleaner to create a cron job in Kubernetes to run it.
-    digest: 1d6e07d1a611fe56dd51d9b266bf676a9cbeb6102b7737b12606bca6a9315710
+    digest: 82348a159b1264489a5c884ea8728291c4efb678655448df8e46a40d5799918c
     name: simple-elasticsearch-cleaner
     type: application
     urls:
