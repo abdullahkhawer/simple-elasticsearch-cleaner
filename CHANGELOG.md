@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2024-12-13
+
+### 🐛 Bug Fixes
+
+- Update Helm chart description.
+
+### ⚙️ Miscellaneous Tasks
+
+- Update structure of data in Chart.yaml
+- Update structure of data in Chart.yaml
+- Add .gitignore file and update description in Helm chart.
+
 ## [2.1.0] - 2024-12-11
 
 ### 🚀 Features
