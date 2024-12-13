@@ -43,7 +43,7 @@ Following are the 4 ways to use it:
 
 ## Terraform Module
 
-You can use its [Terraform module](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/terraform) to create a Helm release using its Helm chart to create a cron job running that Docker container in a pod on a Kubernetes cluster.
+You can use its [Terraform module](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/terraform) to create a Helm release using its Helm chart to create a cron job running that Docker container in a pod on a Kubernetes cluster.
 
 For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/terraform/README.md).
 
@@ -57,7 +57,7 @@ For more details, check out its [README](https://github.com/abdullahkhawer/simpl
 
 You can use its [Docker image](https://hub.docker.com/r/abdullahkhawer/simple-elasticsearch-cleaner/) which is publicly available to run its Docker container to run its Python script.
 
-The Dockerfile used to build the image can be found [here](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/docker/).
+The Dockerfile used to build the image can be found [here](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/docker).
 
 For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/docker/README.md).
 
