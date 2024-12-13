@@ -1,6 +1,6 @@
 apiVersion: v2
 name: simple-elasticsearch-cleaner
-description: A Helm chart for Simple Elasticsearch Cleaner to create a cron job in Kubernetes to run it.
+description: A Helm chart for Simple Elasticsearch Cleaner to create a cron job in Kubernetes to delete all indices and their associated data streams from the Elasticsearch cluster which are older than the specified number of days.
 type: application
 sources:
   - https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/tree/master/helm-charts/simple-elasticsearch-cleaner

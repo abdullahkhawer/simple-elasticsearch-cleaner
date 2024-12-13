@@ -4,7 +4,7 @@
 
 # Introduction
 
-A simple Elasticsearch cleaner based on a Python script to delete all indices and data streams from the Elasticsearch cluster which are older than the specified number of days. It is basically a curator but with the ability to delete only, removing both indices and their associated data streams.
+A Simple Elasticsearch Cleaner based on a Python script to delete all indices and data streams from the Elasticsearch cluster which are older than the specified number of days. It is basically a curator but with the ability to delete only, removing both indices and their associated data streams.
 
 Below you can find an example of the execution:
 ```
@@ -50,6 +50,8 @@ For more details, check out its [README](https://github.com/abdullahkhawer/simpl
 ## Helm Chart
 
 You can use its [Helm chart](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/helm-charts/simple-elasticsearch-cleaner) to create a Helm release to create a cron job running that Docker container in a pod on a Kubernetes cluster.
+
+Its repository on [Artifact Hub](https://artifacthub.io) can be found [here](https://artifacthub.io/packages/helm/simple-elasticsearch-cleaner/simple-elasticsearch-cleaner).
 
 For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/helm-charts/simple-elasticsearch-cleaner/README.md).
 
