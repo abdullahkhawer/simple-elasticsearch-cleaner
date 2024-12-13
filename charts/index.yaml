@@ -27,7 +27,7 @@ entries:
     sources:
       - https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/tree/v2.0.0/helm-charts/simple-elasticsearch-cleaner
     urls:
-      - https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/releases/download/v2.0.0/simple-elasticsearch-cleaner-1.1.0.tgz
+      - https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/releases/download/v2.0.0/simple-elasticsearch-cleaner-1.0.0.tgz
     maintainers:
       - name: Abdullah Khawer
         email: abdullahkhawer@live.com
