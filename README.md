@@ -49,9 +49,9 @@ For more details, check out its [README](https://github.com/abdullahkhawer/simpl
 
 ## Helm Chart
 
-You can use its [Helm chart](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/helm-chart/simple-elasticsearch-cleaner) to create a Helm release to create a cron job running that Docker container in a pod on a Kubernetes cluster.
+You can use its [Helm chart](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/helm-charts/simple-elasticsearch-cleaner) to create a Helm release to create a cron job running that Docker container in a pod on a Kubernetes cluster.
 
-For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/helm-chart/simple-elasticsearch-cleaner/README.md).
+For more details, check out its [README](https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/blob/master/helm-charts/simple-elasticsearch-cleaner/README.md).
 
 ## Docker Image
 
