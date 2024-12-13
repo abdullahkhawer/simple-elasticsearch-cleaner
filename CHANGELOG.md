@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### 🐛 Bug Fixes
 
 - Update Helm chart description.
+- Update Helm chart version
 
 ### ⚙️ Miscellaneous Tasks
 
