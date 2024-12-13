@@ -3,20 +3,35 @@ entries:
   simple-elasticsearch-cleaner:
   - apiVersion: v2
     appVersion: 2.1.0
-    description: A Helm chart for Simple Elasticsearch Cleaner to create a cron job in Kubernetes to run it.
+    created: "2024-12-13T20:29:22.278796+01:00"
+    description: A Helm chart for Simple Elasticsearch Cleaner to create a cron job
+      in Kubernetes to run it.
     digest: 82348a159b1264489a5c884ea8728291c4efb678655448df8e46a40d5799918c
+    maintainers:
+    - email: abdullahkhawer@live.com
+      name: Abdullah Khawer
+      url: https://github.com/abdullahkhawer
     name: simple-elasticsearch-cleaner
+    sources:
+    - https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/tree/master/helm-charts/simple-elasticsearch-cleaner
     type: application
     urls:
     - https://abdullahkhawer.github.io/simple-elasticsearch-cleaner/charts/simple-elasticsearch-cleaner-1.1.0.tgz
     version: 1.1.0
   - apiVersion: v2
     appVersion: 2.0.0
-    description: A Helm chart for Simple Elasticsearch Cleaner to create a cron job in Kubernetes to run it.
+    created: "2024-12-13T20:29:22.278531+01:00"
+    description: Create a cron job in Kubernetes to run Simple Elasticsearch Cleaner.
     digest: bba73328bc1253861a4edbad7e83888eaf8c3662d26a972bed19143bb3a52c25
+    maintainers:
+    - email: abdullahkhawer@live.com
+      name: Abdullah Khawer
+      url: https://github.com/abdullahkhawer
     name: simple-elasticsearch-cleaner
+    sources:
+    - https://github.com/abdullahkhawer/simple-elasticsearch-cleaner/helm-chart/simple-elasticsearch-cleaner
     type: application
     urls:
     - https://abdullahkhawer.github.io/simple-elasticsearch-cleaner/charts/simple-elasticsearch-cleaner-1.0.0.tgz
     version: 1.0.0
-generated: "2024-12-13T17:08:06.301397+01:00"
+generated: "2024-12-13T20:29:22.278197+01:00"
